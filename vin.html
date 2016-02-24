@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script type="text/javascript" src="js/vin.js"></script>
+    <link href="http://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.css" rel="stylesheet">
+    <script src="http://cdn.bootcss.com/angular.js/1.4.9/angular.js"></script>
+</head>
+<body ng-controller="vinCtrl">
+	<form action="" class="form form-inline" method="POST" role="form">
+		<legend>VIN码计算</legend>
+	
+		<div class="form-group">
+			<input type="text" class="form-control" id="" ng-model="cx"  placeholder="车型">
+			<input type="text" class="form-control" id="" ng-model="q" required placeholder="前8位">
+			<input type="text" class="form-control" id="" ng-model="lsh" required placeholder="流水号">
+			<input type="text" class="form-control" id="" ng-model="rwh" placeholder="任务号">
+		</div>
+		<a class="btn btn-primary" ng-click="ctt()">计算</a>
+	</form>
+	<table class="table table-hover" >
+		<thead>
+			<tr>
+				<th>车型：<span ng-bind="count[0]"></span>/<span ng-bind="count[3]"></span>辆   任务号：<span ng-bind="count[2]"></span></th>
+			</tr>
+		</thead>
+		<tbody ng-repeat="rs in count[1]">
+			<tr>
+				<td>{{rs}}</td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+<script type="text/javascript">
+	var myApp=angular.module('myApp', []);
+	myApp.controller('vinCtrl',  function($scope){
+		// $scope.cx="SX2190";
+		// $scope.q="LZGCE2M5";
+		// $scope.lsh1="EG001234-EG001250";
+		// $scope.rwh="Z2F111111111";
+		$scope.ctt=function(){
+		//	$scope.cx="asd";
+			//alert('asd');
+		$scope.count= vinP($scope.cx,$scope.q,$scope.lsh,$scope.rwh);	
+		}
+	})
+</script>
+</html>
